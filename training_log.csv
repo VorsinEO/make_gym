@@ -1,0 +1,5 @@
+workout_name,exercise_name,set_number,weight_kg,reps,rpe,rest_sec,notes,timestamp
+chest,chest_machine,1,85.0,10,7,180,,2025-03-29T18:18:09.636469
+chest,chest_machine,2,85.0,10,7,180,,2025-03-29T18:18:29.498618
+chest,chest_machine,3,85.0,10,7,180,,2025-03-29T18:18:35.429412
+

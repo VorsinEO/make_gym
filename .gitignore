@@ -34,7 +34,6 @@ ENV/
 
 # Project specific
 *.log
-training_log.csv
 config.yaml
 
 # OS specific
