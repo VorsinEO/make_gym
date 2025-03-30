@@ -1,0 +1,14 @@
+# Core dependencies
+streamlit>=1.32.0,<2.0.0
+pandas>=2.2.0,<3.0.0
+pyyaml>=6.0.1,<7.0.0
+requests>=2.31.0,<3.0.0
+
+# Testing
+pytest>=8.0.0,<9.0.0
+pytest-cov>=4.1.0,<5.0.0  # For test coverage reporting
+
+# Development
+black>=24.1.0,<25.0.0  # For code formatting
+flake8>=7.0.0,<8.0.0  # For linting
+isort>=5.13.0,<6.0.0  # For import sorting 
