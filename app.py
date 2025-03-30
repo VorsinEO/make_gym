@@ -173,12 +173,16 @@ def get_workout_form():
             # Create two columns for workout name selection
             col1, col2 = st.columns([3, 1])
             with col1:
+                # Always show the selectbox, even if no history
+                options = ["New Workout"]
                 if history['workouts']:
-                    st.session_state.form_data[field] = st.selectbox(
-                        "Select Workout",
-                        ["New Workout"] + history['workouts'],
-                        format_func=lambda x: "New Workout" if x == "New Workout" else x
-                    )
+                    options.extend(history['workouts'])
+                
+                st.session_state.form_data[field] = st.selectbox(
+                    "Select Workout",
+                    options,
+                    format_func=lambda x: "New Workout" if x == "New Workout" else x
+                )
             with col2:
                 if st.session_state.form_data.get(field) == "New Workout":
                     st.session_state.form_data[field] = st.text_input(
@@ -189,12 +193,16 @@ def get_workout_form():
             # Create two columns for exercise name selection
             col1, col2 = st.columns([3, 1])
             with col1:
+                # Always show the selectbox, even if no history
+                options = ["New Exercise"]
                 if history['exercises']:
-                    st.session_state.form_data[field] = st.selectbox(
-                        "Select Exercise",
-                        ["New Exercise"] + history['exercises'],
-                        format_func=lambda x: "New Exercise" if x == "New Exercise" else x
-                    )
+                    options.extend(history['exercises'])
+                
+                st.session_state.form_data[field] = st.selectbox(
+                    "Select Exercise",
+                    options,
+                    format_func=lambda x: "New Exercise" if x == "New Exercise" else x
+                )
             with col2:
                 if st.session_state.form_data.get(field) == "New Exercise":
                     st.session_state.form_data[field] = st.text_input(

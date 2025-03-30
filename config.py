@@ -13,12 +13,25 @@ DEFAULT_CONFIG = {
 
 def load_config():
     """Load configuration from config.yaml if it exists, otherwise use defaults."""
-    if os.path.exists('config.yaml'):
-        with open('config.yaml', 'r') as f:
-            config = yaml.safe_load(f)
-    else:
-        config = DEFAULT_CONFIG
-        # Save default config to file
-        with open('config.yaml', 'w') as f:
-            yaml.dump(config, f)
-    return config 
+    try:
+        if os.path.exists('config.yaml'):
+            with open('config.yaml', 'r') as f:
+                config = yaml.safe_load(f)
+        else:
+            config = DEFAULT_CONFIG
+            # Save default config to file
+            try:
+                with open('config.yaml', 'w') as f:
+                    yaml.dump(config, f)
+            except Exception as e:
+                print(f"Warning: Could not save default config: {e}")
+        
+        # Ensure all required keys exist
+        for key, value in DEFAULT_CONFIG.items():
+            if key not in config:
+                config[key] = value
+        
+        return config
+    except Exception as e:
+        print(f"Warning: Error loading config, using defaults: {e}")
+        return DEFAULT_CONFIG 
