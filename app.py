@@ -139,7 +139,7 @@ def get_workout_form():
     if 'current_exercise' not in st.session_state:
         st.session_state.current_exercise = None
     if 'set_count' not in st.session_state:
-        st.session_state.set_count = 0
+        st.session_state.set_count = 1  # Initialize to 1 instead of 0
     if 'last_exercise' not in st.session_state:
         st.session_state.last_exercise = None
     if 'last_workout' not in st.session_state:
@@ -161,10 +161,12 @@ def get_workout_form():
                 st.session_state.last_exercise = current_exercise
                 st.session_state.last_workout = current_workout
             
+            # Ensure set_count is at least 1
+            current_set_count = max(1, st.session_state.set_count)
             st.session_state.form_data[field] = st.number_input(
                 "Set Number", 
                 min_value=1, 
-                value=st.session_state.set_count,
+                value=current_set_count,
                 disabled=True  # Auto-managed
             )
         elif field == 'workout_name':
@@ -278,7 +280,7 @@ def main():
                 st.session_state.workout_active = True
                 st.session_state.form_data = {}
                 st.session_state.current_exercise = None
-                st.session_state.set_count = 0
+                st.session_state.set_count = 1  # Initialize to 1 instead of 0
                 st.session_state.last_exercise = None
                 st.session_state.last_workout = None
                 st.rerun()
@@ -329,7 +331,7 @@ def main():
                         'workout_name': form_data.get('workout_name')
                     }
                     st.session_state.current_exercise = None
-                    st.session_state.set_count = 0
+                    st.session_state.set_count = 1
                     st.session_state.last_exercise = None
                     st.session_state.last_workout = None
                     st.rerun()
@@ -337,7 +339,7 @@ def main():
                 if st.button("End Workout", use_container_width=True):
                     st.session_state.workout_active = False
                     st.session_state.current_exercise = None
-                    st.session_state.set_count = 0
+                    st.session_state.set_count = 1
                     st.session_state.last_exercise = None
                     st.session_state.last_workout = None
                     st.rerun()
